@@ -1,8 +1,7 @@
-package Automation_Exercise.Register_User;
+package Automation_Exercise.A1_Register_User;
 
 import Automation_Exercise.Page;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.devtools.v85.layertree.model.StickyPositionConstraint;
 
 public class Register_Page extends Page {
 

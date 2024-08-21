@@ -1,17 +1,11 @@
-package Automation_Exercise.Register_User;
+package Automation_Exercise.A1_Register_User;
 
 import Automation_Exercise.MainPage;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegisterUserTest {
@@ -22,7 +16,7 @@ public class RegisterUserTest {
     private WebDriverWait wait;
 
     @BeforeEach
-    void Register(){
+    void setUp(){
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -36,11 +30,11 @@ public class RegisterUserTest {
 
 
         mainPage.waitUntilTheElementAppear(mainPage.homePage);
-        System.out.println("Actual Result 1: Verify that home page is visible successfully");
+        System.out.println("Actual Result 1: Verified that home page is visible successfully");
 
         mainPage.waitUntilTheElementAppear(mainPage.loginButton);
         mainPage.clickToTheElement(mainPage.loginButton);
-        System.out.println("Actual Result 2: Verify 'New User Signup!' is visible");
+        System.out.println("Actual Result 2: Verified 'New User Signup!' is visible");
 
         registerPage.waitUntilTheElementAppear(registerPage.singupName);
         registerPage.writeTheText(registerPage.singupName, "Onur");
