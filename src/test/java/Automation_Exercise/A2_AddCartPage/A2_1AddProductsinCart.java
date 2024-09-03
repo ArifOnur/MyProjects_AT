@@ -59,32 +59,58 @@ public class A2_1AddProductsinCart {
         cartPageLocators.waitUntilTheElementAppear(cartPageLocators.productsButton);
         cartPageLocators.clickToTheElement(cartPageLocators.productsButton);
 
-        //Hover over first product and click 'View Product'
-        List<WebElement> viewProduct = driver.findElements(By.xpath("//a[text()='View Product']"));
-        if (viewProduct.size() > 0){
-            viewProduct.getFirst().click();
-            System.out.println("Verified product detail is opened");
+        //Hover over first product and click 'Add to cart'
+        List<WebElement> viewProducts = driver.findElements(By.xpath("//div[@class='productinfo text-center']"));
+        actions.moveToElement(viewProducts.getFirst()).perform();
+
+        List<WebElement> addToCartButton = driver.findElements(By.xpath("//a[@class='btn btn-default add-to-cart']"));
+        if (!addToCartButton.isEmpty()){
+            addToCartButton.getFirst().click();
+            System.out.println("Actual Result 2: Added to cart");
         }
+        Thread.sleep(3000);
 
-        //Increase quantity to 4
-        WebElement quantity = driver.findElement(By.id("quantity"));
-        actions.doubleClick(quantity).perform();
-        cartPageLocators.pressKeybordKey(cartPageLocators.quantityWrite, Keys.BACK_SPACE);
-        cartPageLocators.writeTheText(cartPageLocators.quantityWrite,"4");
+        //Click 'Continue Shopping' button
+        cartPageLocators.waitUntilTheElementAppear(cartPageLocators.continueShopping);
+        cartPageLocators.clickToTheElement(cartPageLocators.continueShopping);
 
-        //Click 'Add to cart'
-        cartPageLocators.clickToTheElement(cartPageLocators.addToCartButton);
-        String expectedData = "Your product has been added to cart.";
-        WebElement addedCart = driver.findElement(By.xpath("//p[@class='text-center']"));
-        String actualData = addedCart.getText();
-        assertEquals(expectedData, actualData, "The confirmation message was not as expected.");
+        //Hover over second product and click 'Add to cart'
+        if (!addToCartButton.isEmpty()){
+            actions.moveToElement(viewProducts.get(1)).pause(1000).perform();
+            addToCartButton.get(3).click();
+            System.out.println("Actual Result 3: Second product added to cart");
+        }
+        Thread.sleep(1000);
 
+        //Click 'View Cart' button
+        cartPageLocators.waitUntilTheElementAppear(cartPageLocators.viewCartButton);
+        cartPageLocators.clickToTheElement(cartPageLocators.viewCartButton);
+        Thread.sleep(1000);
 
+        //Verify both products are added to Cart
+        cartPageLocators.waitUntilTheElementAppear(cartPageLocators.verifyFistProduct);
+        cartPageLocators.waitUntilTheElementAppear(cartPageLocators.verifySecondProduct);
+        System.out.println("Actual Result 4: Verified both products are added to Cart");
 
+        //Verify their prices, quantity and total price
+        WebElement priceFirstProduct = driver.findElement(By.xpath("(//p[text()='Rs. 500'])[1]"));
+        System.out.println("Price : " + priceFirstProduct.getText());
+        assertEquals(cartPageLocators.priceFirstProduct,priceFirstProduct.getText());
 
+        WebElement priceSecondProduct = driver.findElement(By.xpath("(//p[text()='Rs. 400'])[1]"));
+        System.out.println("Other Price  : " + priceSecondProduct.getText());
+        assertEquals(cartPageLocators.priceSecondProduct,priceSecondProduct.getText());
 
+        List<WebElement> quantities = driver.findElements(By.xpath("(//button[@class='disabled' and text()='1'])"));
+        actions.moveToElement(quantities.get(1)).perform();
 
+        WebElement totalPriceFirstProduct = driver.findElement(By.xpath("(//p[text()='Rs. 500'])[1]"));
+        System.out.println("Total Price : " + totalPriceFirstProduct.getText());
+        assertEquals(cartPageLocators.priceFirstProduct,totalPriceFirstProduct.getText());
 
+        WebElement totalPriceSecondProduct = driver.findElement(By.xpath("(//p[text()='Rs. 400'])[1]"));
+        System.out.println("Other Total Price  : " + totalPriceSecondProduct.getText());
+        assertEquals(cartPageLocators.priceSecondProduct,totalPriceSecondProduct.getText());
 
     }
 
