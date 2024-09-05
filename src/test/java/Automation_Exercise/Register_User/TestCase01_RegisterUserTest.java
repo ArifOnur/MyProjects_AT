@@ -1,4 +1,4 @@
-package Automation_Exercise.A1_Register_User;
+package Automation_Exercise.Register_User;
 
 import Automation_Exercise.MainPage;
 import org.junit.jupiter.api.AfterEach;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class RegisterUserTest {
+public class TestCase01_RegisterUserTest {
 
     private MainPage mainPage;
     private Register_Page registerPage;

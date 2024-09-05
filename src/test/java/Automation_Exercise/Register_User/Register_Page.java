@@ -1,4 +1,4 @@
-package Automation_Exercise.A1_Register_User;
+package Automation_Exercise.Register_User;
 
 import Automation_Exercise.Page;
 import org.openqa.selenium.WebDriver;

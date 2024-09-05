@@ -1,13 +1,11 @@
-package Automation_Exercise.A2_AddCartPage;
+package Automation_Exercise.CartPage;
 
 import Automation_Exercise.MainPage;
 import Automation_Exercise.Page;
-import dev.failsafe.internal.util.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class A2_1AddProductsinCart {
+public class TestCase02_AddProductsinCart {
 
     private MainPage mainPage;
     private Page page;
@@ -95,22 +93,22 @@ public class A2_1AddProductsinCart {
         //Verify their prices, quantity and total price
         WebElement priceFirstProduct = driver.findElement(By.xpath("(//p[text()='Rs. 500'])[1]"));
         System.out.println("Price : " + priceFirstProduct.getText());
-        assertEquals(cartPageLocators.priceFirstProduct,priceFirstProduct.getText());
+        assertEquals(cartPageLocators.priceFirstProductXpath,priceFirstProduct.getText());
 
         WebElement priceSecondProduct = driver.findElement(By.xpath("(//p[text()='Rs. 400'])[1]"));
         System.out.println("Other Price  : " + priceSecondProduct.getText());
-        assertEquals(cartPageLocators.priceSecondProduct,priceSecondProduct.getText());
+        assertEquals(cartPageLocators.priceSecondProductXpath,priceSecondProduct.getText());
 
         List<WebElement> quantities = driver.findElements(By.xpath("(//button[@class='disabled' and text()='1'])"));
         actions.moveToElement(quantities.get(1)).perform();
 
         WebElement totalPriceFirstProduct = driver.findElement(By.xpath("(//p[text()='Rs. 500'])[1]"));
         System.out.println("Total Price : " + totalPriceFirstProduct.getText());
-        assertEquals(cartPageLocators.priceFirstProduct,totalPriceFirstProduct.getText());
+        assertEquals(cartPageLocators.priceFirstProductXpath,totalPriceFirstProduct.getText());
 
         WebElement totalPriceSecondProduct = driver.findElement(By.xpath("(//p[text()='Rs. 400'])[1]"));
         System.out.println("Other Total Price  : " + totalPriceSecondProduct.getText());
-        assertEquals(cartPageLocators.priceSecondProduct,totalPriceSecondProduct.getText());
+        assertEquals(cartPageLocators.priceFirstProductXpath,totalPriceSecondProduct.getText());
 
     }
 
